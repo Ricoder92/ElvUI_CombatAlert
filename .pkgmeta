@@ -1,4 +1,2 @@
 package-as: ElvUI_CombatAlert
-
-move-folders:
-  ElvUI_CombatAlert: ElvUI_CombatAlert
+enable-nolib-creation: no
