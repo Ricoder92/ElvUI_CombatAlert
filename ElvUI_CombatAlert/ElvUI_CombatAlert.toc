@@ -1,4 +1,4 @@
-## Title: ElvUI CombatAlert
+## Title: ElvUI_CombatAlert
 ## Author: Fleyy-Blackrock
 ## Version: 1.0.0
 ## Interface: 120000
