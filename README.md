@@ -1,6 +1,6 @@
-# ElvUI_CombatAlert
+# ElvUI CombatAlert
 
-**ElvUI_CombatAlert** is a small plugin for ElvUI that displays customizable combat in/out alerts on your screen.
+**ElvUI CombatAlert** is a small plugin for ElvUI that displays customizable combat in/out alerts on your screen.
 
 Currently implemented features:
 - Combat Begin / Combat End text alerts
