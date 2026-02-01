@@ -5,19 +5,16 @@ local PLUGIN = E:GetModule("ElvUI_CombatAlert", true)
 if not PLUGIN then return end
 
 local L = PLUGIN.L or {}
+
 local function T(key, fallback)
     return L[key] or fallback or key
 end
 
--- ----------------------------------------
--- Localized helpers
--- ----------------------------------------
-local function T(key)
-    return (L and L[key]) or key
-end
-
+-- ------------------------------------------------------------
+-- Helpers
+-- ------------------------------------------------------------
 local function SoundValues()
-    local t = { ["None"] = T("NONE") }
+    local t = { ["None"] = T("NONE", "None") }
     local sounds = E.LSM and E.LSM:HashTable("sound") or {}
     for k, v in pairs(sounds) do
         t[k] = v
@@ -27,25 +24,24 @@ end
 
 local function SoundChannelValues()
     return {
-        ["Master"]   = T("SOUND_CHANNEL_MASTER"),
-        ["SFX"]      = T("SOUND_CHANNEL_SFX"),
-        ["Music"]    = T("SOUND_CHANNEL_MUSIC"),
-        ["Ambience"] = T("SOUND_CHANNEL_AMBIENCE"),
-        ["Dialog"]   = T("SOUND_CHANNEL_DIALOG"),
+        Master   = T("SOUND_CHANNEL_MASTER", "Master"),
+        SFX      = T("SOUND_CHANNEL_SFX", "SFX"),
+        Music    = T("SOUND_CHANNEL_MUSIC", "Music"),
+        Ambience = T("SOUND_CHANNEL_AMBIENCE", "Ambience"),
+        Dialog   = T("SOUND_CHANNEL_DIALOG", "Dialog"),
     }
 end
 
 local function OutlineValues()
     return {
-        ["NONE"]              = T("OUTLINE_NONE"),
-        ["OUTLINE"]           = T("OUTLINE_OUTLINE"),
-        ["THICKOUTLINE"]      = T("OUTLINE_THICK"),
-        ["MONOCHROMEOUTLINE"] = T("OUTLINE_MONO"),
-        ["OUTLINEMONOCHROME"] = T("OUTLINE_OUTLINE_MONO"),
-
-        ["SHADOW"]            = T("OUTLINE_SHADOW"),
-        ["SHADOWOUTLINE"]     = T("OUTLINE_SHADOW_OUTLINE"),
-        ["SHADOWTHICKOUTLINE"]= T("OUTLINE_SHADOW_THICK"),
+        NONE              = T("OUTLINE_NONE", "None"),
+        OUTLINE           = T("OUTLINE_OUTLINE", "Outline"),
+        THICKOUTLINE      = T("OUTLINE_THICK", "Thick Outline"),
+        MONOCHROMEOUTLINE = T("OUTLINE_MONO", "Mono Outline"),
+        OUTLINEMONOCHROME = T("OUTLINE_OUTLINE_MONO", "Outline Mono"),
+        SHADOW            = T("OUTLINE_SHADOW", "Shadow"),
+        SHADOWOUTLINE     = T("OUTLINE_SHADOW_OUTLINE", "Shadow + Outline"),
+        SHADOWTHICKOUTLINE= T("OUTLINE_SHADOW_THICK", "Shadow + Thick"),
     }
 end
 
@@ -55,9 +51,7 @@ local function InsertOptions()
     if not PLUGIN or not Mod then return end
 
     local function DB()
-        E.db.ElvUI_CombatAlert = E.db.ElvUI_CombatAlert or {}
-        E.db.ElvUI_CombatAlert[Mod.DB_KEY] = E.db.ElvUI_CombatAlert[Mod.DB_KEY] or {}
-        return E.db.ElvUI_CombatAlert[Mod.DB_KEY]
+        return Mod:GetDB()
     end
 
     local function Entry(which)
@@ -165,7 +159,7 @@ local function InsertOptions()
                         order = 23,
                         type = "range",
                         name = T("CA_HOLD_TIME"),
-                        min = 0, max = 10, step = 0.1,
+                        min = 1, max = 5, step = 0.1,
                         get = function() return Entry("begin").holdTime end,
                         set = function(_, v) Entry("begin").holdTime = v end,
                     },
@@ -182,7 +176,7 @@ local function InsertOptions()
                         order = 25,
                         type = "range",
                         name = T("CA_FADE_TIME"),
-                        min = 0.05, max = 10, step = 0.1,
+                        min = 0.1, max = 5, step = 0.1,
                         disabled = function() return Entry("begin").fadeEnabled == false end,
                         get = function() return Entry("begin").fadeTime end,
                         set = function(_, v) Entry("begin").fadeTime = v end,
@@ -258,7 +252,7 @@ local function InsertOptions()
                         order = 33,
                         type = "range",
                         name = T("CA_HOLD_TIME"),
-                        min = 0, max = 10, step = 0.1,
+                        min = 1, max = 5, step = 0.1,
                         get = function() return Entry("end").holdTime end,
                         set = function(_, v) Entry("end").holdTime = v end,
                     },
@@ -275,7 +269,7 @@ local function InsertOptions()
                         order = 35,
                         type = "range",
                         name = T("CA_FADE_TIME"),
-                        min = 0.05, max = 10, step = 0.1,
+                        min = 0.1, max = 5, step = 0.1,
                         disabled = function() return Entry("end").fadeEnabled == false end,
                         get = function() return Entry("end").fadeTime end,
                         set = function(_, v) Entry("end").fadeTime = v end,

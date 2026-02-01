@@ -72,16 +72,16 @@ function Mod:GetDefaults()
             enabled = true,
 
             font = "Expressway",
-            fontSize = 32,
-            fontOutline = "OUTLINE",
+            fontSize = 18,
+            fontOutline = "OUTLINE_SHADOW_OUTLINE",
 
             begin = {
                 enabled = true,
                 text = T("DEFAULT_COMBAT_BEGIN", "++ Combat ++"),
-                color = { r = 0.1, g = 1.0, b = 0.1, a = 1.0 },
-                holdTime = 0.8,
+                color = { r = 1.0, g = 0.2, b = 0.2, a = 1.0 },
+                holdTime = 2,
                 fadeEnabled = true,
-                fadeTime = 1.5,
+                fadeTime = 2,
 
                 soundEnabled = false,
                 sound = "None",
@@ -91,10 +91,11 @@ function Mod:GetDefaults()
             ["end"] = {
                 enabled = true,
                 text = T("DEFAULT_COMBAT_END", "-- Combat --"),
-                color = { r = 1.0, g = 0.2, b = 0.2, a = 1.0 },
-                holdTime = 0.8,
+               
+                color = { r = 0.1, g = 1.0, b = 0.1, a = 1.0 },
+                holdTime = 2,
                 fadeEnabled = true,
-                fadeTime = 1.5,
+                fadeTime = 2,
 
                 soundEnabled = false,
                 sound = "None",
@@ -115,7 +116,7 @@ function Mod:CreateDisplay()
     f:SetSize(180, 40)
 
     f:ClearAllPoints()
-    f:SetPoint("CENTER", E.UIParent, "CENTER", 0, 200)
+    f:SetPoint("CENTER", E.UIParent, "CENTER", -200, 0)
 
     local fs = f:CreateFontString(nil, "OVERLAY")
     fs:SetPoint("CENTER", f, "CENTER", 0, 0)
