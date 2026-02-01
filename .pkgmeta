@@ -5,3 +5,7 @@ move-folders:
 
 ignore:
   - "*.md"
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
