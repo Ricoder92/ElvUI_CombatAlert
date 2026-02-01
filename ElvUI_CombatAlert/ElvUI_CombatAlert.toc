@@ -5,6 +5,7 @@
 ## Notes: Simple combat alert for ElvUI
 ## RequiredDeps: ElvUI
 ## OptionalDeps: ElvUI_OptionsUI
+## X-Curse-Project-ID: 1450614
 
 Core.lua
 Locales/enUS.lua
